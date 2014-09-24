@@ -39,14 +39,15 @@ class MessagePrinter
   end
 
   def game_win
-    puts "You win!"
+    "You win!"
     program_instructions
   end
 
-  def valid_guess(command, random_sequence)
-    puts "You have #{correct_color} correct colors.
-    And #{correct_position} are in the correct position" ####
+  def valid_guess(correct_color, correct_position)
+    "You have #{correct_color} correct colors.
+    And #{correct_position} are in the correct position"
   end
+end
 
   # def wrong_characters
   #   puts "You do not have the correct number of characters in your guess"
@@ -61,7 +62,6 @@ class MessagePrinter
   #   puts "That's not a valid command. Please enter a guess or press 'i' for instructions, or 'q' to quit."
   #   program_instructions
   # end
-end
 
 # -display welcome message
 # -display option for new instructions, option to quit, option for new game

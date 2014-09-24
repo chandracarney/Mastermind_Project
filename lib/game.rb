@@ -7,10 +7,9 @@ class Game
 
   def initialize(printer = MessagePrinter.new)
     @turns           = 1
-    @random_sequence = SequenceGenerator.new
+    @random_sequence = SequenceGenerator.new.random_sequence
     @printer         = printer
     @command         = ""
-    @check_guess     = CompareGuess.new
     # @time            =
   end
 
@@ -19,8 +18,8 @@ class Game
     until win? || exit?
       puts printer.turn_indicator(turns)
       puts printer.game_command_request
-      @command = gets.strip.split("")
-      @process_game_turn
+      @command = gets.strip
+      process_game_turn
     end
   end
 
@@ -28,10 +27,10 @@ class Game
 
   def process_game_turn
     return if exit?
-    correct_position = check_guess(command, random_sequence)
-    correct_color = check_guess(command, random_sequence)
+    check_guess = CompareGuess.new(command, random_sequence)
+    puts printer.valid_guess(check_guess.correct_color, check_guess.correct_position)
     case
-    
+
 
     when win?
       puts printer.game_win
