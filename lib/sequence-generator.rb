@@ -1,8 +1,9 @@
 class SequenceGenerator
 
   def random_sequence
-    random_colors = ["r","r","g","b","y"]
-    random_colors.shuffle.join
+    random_colors = ["r","g","b","y"]
+    random_colors.join
+    # random_colors.shuffle.join
   end
 end
 

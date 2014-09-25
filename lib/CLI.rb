@@ -8,40 +8,52 @@ class CLI
 
   def start
     puts printer.intro
-    until exit?
-      puts printer.command_request
-      @command = gets.strip
-      process_initial_commands
-    end
-    puts printer.quitting
+    process_initial_commands
+    play_again
   end
 
   private
 
   def process_initial_commands
+    puts printer.program_instructions
+    puts printer.command_request
+    @command = gets.strip.downcase
     case
     when play?
       game = Game.new(printer)
       game.play
+    when exit?
+        puts printer.game_quit
     when instructions?
       puts printer.game_instructions
-    when exit?
-      puts printer.game_quit
-    else
-      puts printer.not_a_valid_command
+      process_initial_commands
+    # else
+    #   puts printer.not_a_valid_command
+    end
+  end
+
+  def play_again
+    puts printer.play_again
+    @command = gets.strip.downcase
+    if play_again?
+      process_initial_commands
     end
   end
 
   def play?
-    command == "p"
+    command == "p" || command == "play"
   end
 
   def instructions?
-    command == "i"
+    command == "i" || command = "instructions"
   end
 
   def exit?
     command == "q" || command == "quit"
+  end
+
+  def play_again?
+    command == "y" || command == "yes"
   end
 end
 

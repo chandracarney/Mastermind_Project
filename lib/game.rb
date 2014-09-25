@@ -3,24 +3,31 @@ class Game
               :random_sequence,
               :printer,
               :command,
-              :check_guess
+              :check_guess,
+              :start_time,
+              :end_time,
+              :total_time
 
   def initialize(printer = MessagePrinter.new)
     @turns           = 1
     @random_sequence = SequenceGenerator.new.random_sequence
     @printer         = printer
     @command         = ""
-    # @time            =
+    @start_time      = start_time
+    @end_time        = end_time
+    @total_time      = total_time
   end
 
   def play
     puts printer.game_intro
+    @start_time = Time.now
     until win? || exit?
       puts printer.turn_indicator(turns)
       puts printer.game_command_request
-      @command = gets.strip
+      @command = gets.strip.downcase
       process_game_turn
     end
+    winning
   end
 
   private
@@ -29,44 +36,26 @@ class Game
     return if exit?
     check_guess = CompareGuess.new(command, random_sequence)
     puts printer.valid_guess(check_guess.correct_color, check_guess.correct_position)
-    case
-
-
-    when win?
-      puts printer.game_win
-    # when wrong_number_of_characters?
-    #   printer.wrong_characters
-
-    end
+    add_turn
   end
 
-  # def command
-  #   printer.guess_correct_position(position)
-  #   printer.guess_correct_color
-  #   add_turn
-  # end
+  def winning
+    @end_time = Time.now
+    @total_time = (end_time - start_time).to_i
+    puts printer.game_win
+  end
 
   def add_turn
     @turns += 1
   end
-
-  def win?
-    command == random_sequence ####
-  end
-
-  def exit?
-    command == "q" || command == "quit"
-  end
-
-  def wrong_number_of_characters?
-    command > 4 || command < 4
-  end
-
-
-  # def time
-  #   strftime
-  # end
 end
+
+# def time
+#   strftime
+# end
+
+# when wrong_number_of_characters?
+#   printer.wrong_characters
 
 # -string too long
 # -string too short

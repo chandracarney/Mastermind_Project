@@ -12,10 +12,8 @@ class CompareGuess
   end
 
   def correct_color
-    @command.chars.uniq.join.scan(("[#{@random_sequence}]")).count
+    @command.chars.uniq.join.scan(Regexp.new("[#{@random_sequence}]")).count
   end
-
-
 end
 # CompareGuess.new.correct_position
 # CompareGuess.new.correct_color
