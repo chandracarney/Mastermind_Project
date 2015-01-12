@@ -1,78 +1,69 @@
 class MessagePrinter
   def intro
-    "Welcome to Mastermind, where all the women are strong and all the men are good looking."
+    puts "\nWelcome to Mastermind, where all the women are strong and all the men are good looking."
   end
 
   def program_instructions
-    "Enter 'p' to play, 'i' for instructions, or 'q' to quit."
+    puts "Enter 'p' to play, 'i' for instructions, or 'q' for quit."
   end
 
   def command_request
-    "Enter your command:"
+    puts "\nEnter your command below"
   end
 
   def game_instructions
-    "The cmputer makes a random sequence of colors in a certain order, you must guess the colors and order."
+    puts "\nThe computer makes a random sequence of colors in a certain order, you must guess the colors and order."
   end
 
   def quitting
-    "Adios!"
+    puts "Adios!"
   end
 
   def game_intro
-    "I have generated a beginner sequence with four colors made up of: (r)ed,
-    (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
+    puts "\nPlease enter a combination of four colors made up of: (r)ed, (g)reen,
+    (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
     What's your guess?"
   end
 
   def turn_indicator(turns)
-    "This is turn #{turns}."
+    puts "\nThis is turn #{turns}."
   end
 
   def game_command_request
-    "Enter your next guess: "
+    puts "Save Lake Wobegon by entering your guess below"
   end
 
   def game_quit
-    "Exiting the game."
+    puts "Exiting the game. So long!"
   end
 
-  def game_win
-    "You win!"
+  def game_win(random_sequence)
+    puts "\nYou won! Garrison Keillor is pleased that you have guessed '#{random_sequence.upcase}'."
+  end
+
+  def win_timer(minutes_to_win, seconds_to_win)
+    puts "You finished this game in #{minutes_to_win} minute(s) and #{seconds_to_win} second(s)."
   end
 
   def valid_guess(correct_color, correct_position)
-    "You have #{correct_color} correct colors.
-    And #{correct_position} are in the correct position"
+    puts "\nYou have #{correct_color} correct color(s).
+    And #{correct_position} in the correct position(s)."
   end
 
   def play_again
-    "Would you like to play again? Enter 'y' or 'yes'"
+    puts "\nAre you sure? Or would you like to play again? Enter (y)es or (q)uit."
   end
 
-  # def not_a_valid_command
-  #   puts "That's not a valid command. Please enter a guess or press 'i' for instructions, or 'q' to quit."
-  #   program_instructions
-  # end
+  def not_a_valid_command
+    puts "\nThat's not a valid command. Please enter a combination of four colors:
+    (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
+  end
+
+  def too_few_characters
+    puts "\nYou have too few characters."
+  end
+
+  def too_many_characters
+    puts "\nYou have too many characters."
+  end
 end
-
-  # def wrong_characters
-  #   puts "You do not have the correct number of characters in your guess"
-  # end
-
-  # def not_a_valid_letter
-  #   puts "Your guess has one or more letters that do not match r(ed),
-  #   (g)reen, (b)lue, and (y)ellow. Please take another guess with these letters."
-  # end
-
-# -display welcome message
-# -display option for new instructions, option to quit, option for new game
-# -display instructions
-# -display success
-# -display incorrect answer
-# -display results
-# -display current score
-# -prompt them to guess
-# -display how many colors are correct
-# -display how many colors are in the right position
-#
